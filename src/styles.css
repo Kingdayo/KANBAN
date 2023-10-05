@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar:horizontal{
+    height: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #16171F;
+    border-radius: 40px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #2B2C37;
+    border-radius: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #635FC7
+}
+
+::-webkit-scrollbar-corner{
+    background-color: 20212C;
+}
+
+body::-webkit-scrollbar, main_container::-webkit-scrollbar{
+    display: none
+}
+
+.flex_all{
+    @apply flex justify-between items-center px-6 border-line;
+}
+
+.boardStyles{
+    @apply py-3  pl-10 font-bold text-secondary flex gap-4 items-center rounded-r-full cursor-pointer hover:bg-white hover:text-tertiarty-200 transition ease-linear duration-300 uppercase
+}
+
+.selectedBoardStyles{
+    @apply py-3 pl-10 text-white font-bold flex gap-4 items-center bg-tertiarty-200 rounded-r-full cursor-pointer uppercase
+}
+
+.column{
+    @apply h-full w-column text-secondary
+}
+
+.column_title{
+    @apply flex gap-4 items-center
+}
+
+.column_title_span{
+    @apply w-4 h-4 rounded-full
+}
+
+.task{
+    @apply mt-6 bg-primary-100 py-6 px-3 rounded-lg
+}
+
+.task_htag{
+    @apply text-white font-bold
+}
+
+.task_ptag{
+    @apply text-secondary mt-2 text-sm
+}
+
+.addColumnBg{
+    background: linear-gradient(to bottom,#2B2C37, #2B2C37,#2B2C37,#20212C, #20212C)
+}
+
+.asidetoggleVisible{
+    @apply w-1/4 pr-8  md:w-2/5
+}
+
+.asidetoggleHidden{
+    @apply w-zero pr-0
+}
+
+.input{
+    @apply bg-transparent border-2 outline-none rounded-md px-4 py-1 caret-white mt-2 w-full text-white
+ }
+
+.boardInput{
+   @apply bg-transparent border-2 outline-none rounded-md px-4 py-1 caret-white mt-2 w-full text-white
+}
+
+.label{
+    @apply font-semibold text-white text-xs
+}
+
+.column_input_div{
+    @apply flex items-center gap-4
+}
+
+.dottedBorder{
+    @apply border-dotted border-2 border-white h-80 rounded-md mt-6
+}

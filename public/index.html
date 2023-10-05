@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANBAN</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="index.js"></script>
+</head>
+<body class="h-full w-full cursor-progress">
+    <main class="font-sans max-h-screen h-full w-full bg-primary-200 relative">
+        <!-- HEADER -->
+        <header class="fixed top-0 left-0 right-0 w-full h-24 grid grid-cols-4 bg-primary-100 border-line border-b-small z-30   md:grid-cols-5">
+            <div class="col-span-1 flex_all border-line border-r-small   md:col-span-2  mobile:hidden">
+                <img src="./assets/logo-light.svg" alt="">
+            </div>
+            <section class="col-span-3 flex_all md:col-span-3  mobile:col-span-5 mobile:gap-4">
+                <div class="flex items-center gap-4 mobile:gap-2">
+                    <img class="hidden mobile:block" src="./assets/logo-mobile.svg" alt="">
+                   <div class="flex items-baseline gap-4">
+                        <h1 class="boardName text-2xl font-bold text-white uppercase md:text-lg  mobile:text-base  "></h1>
+                        <img class="mobileNavBar transition ease-linear duration-300 hidden mobile:block" src="./assets/icon-chevron-down.svg" alt="">
+                   </div>
+            
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="rounded-l-full rounded-r-full text-white font-medium text-sm px-6 py-3 bg-tertiarty-200 hover:bg-tertiarty-100  transition ease-linear duration-300  mobile:before:content-addTask  mobile:px-5 mobile:py-1"><span class="mobile:hidden">+Add New task</span></button>
+                    <img class="boardSettingBtn h-5 cursor-pointer" src="./assets/icon-vertical-ellipsis.svg" alt="">
+                </div>
+            </section>
+        </header>
+        <!-- END OF HEADER -->
+
+        <!-- IMPORTANT -->
+        <section id="main_container" class="h-full relative overflow-auto">
+            <!--BOARD SETTINGS -->
+            <article class="boardSetting fixed right-2 top-28 mr-3 bg-primary-100 rounded-md pr-12 pl-4 shadow-md hidden">
+                <ul>
+                    <li class="text-red-500 mb-4 cursor-pointer">Clear Board</li>
+                    <li class="deleteBoard text-red-500 mb-4 cursor-pointer">Delete Board</li>
+                    <li class="text-red-500 mb-4 cursor-pointer">Reset Boards</li>
+                </ul>
+            </article>
+            <!--END OF BOARD SETTINGS -->
+            <!-- ASIDE -->
+            <aside class="asidetoggleVisible fixed h-full pt-4 bg-primary-100 border-line border-r-small overflow-hidden transition-all ease-linear duration-300 z-20 mobile:h-fit mobile:w-10/12 mobile:left-small mobile:right-small mobile:mt-4 mobile:rounded-lg mobile:hidden">
+                <h3 class="text-secondary uppercase text-sm font-medium  pl-10 mb-4">All Boards <span class="boardCount"></span></h3>
+                <!-- BOARDS -->
+                <section class="boardContainer flex flex-col overflow-hidden"></section>
+                <!-- END BOARDS -->
+                <div class="createNewBoard py-3 pl-10 font-bold flex gap-4 items-center text-tertiarty-200 cursor-pointer overflow-hidden">
+                    <img src="./assets/icon-board.svg" alt="">
+                    <h3 class="overflow-hidden">+Create New Board</h3>
+                </div>
+        
+                <!-- ASIDE BOTTOM -->
+                <section class="absolute w-full bottom-0 pb-4 overflow-hidden mobile:static">
+                    <!-- <div id="theme" class="flex justify-center gap-5 bg-primary-200 w-3/4 mx-auto px-5 py-4 rounded-md cursor-pointer overflow-hidden">
+                        <img class="h-5 w-5" src="./assets/icon-light-theme.svg" alt="">
+                        <div class="bg-tertiarty-200 w-12 h-6 rounded-l-full rounded-r-full flex justify-end items-center p-1"><span class="bg-white h-4 w-4 block rounded-full"></span></div>
+                        <img class="h-5 w-5" src="./assets/icon-dark-theme.svg" alt="">             
+                    </div> -->
+        
+                    <div class="asideVisibility pl-10 py-4 flex items-center gap-4 font-bold text-secondary cursor-pointer overflow-hidden rounded-r-full mr-6 hover:bg-white transition-all ease-linear duration-300 mobile:hidden">
+                        <svg class="overflow-hidden" width="18" height="16" xmlns="http://www.w3.org/2000/svg"><path class="" d="M8.522 11.223a4.252 4.252 0 0 1-3.654-5.22l3.654 5.22ZM9 12.25A8.685 8.685 0 0 1 1.5 8a8.612 8.612 0 0 1 2.76-2.864l-.86-1.23A10.112 10.112 0 0 0 .208 7.238a1.5 1.5 0 0 0 0 1.524A10.187 10.187 0 0 0 9 13.75c.414 0 .828-.025 1.239-.074l-1-1.43A8.88 8.88 0 0 1 9 12.25Zm8.792-3.488a10.14 10.14 0 0 1-4.486 4.046l1.504 2.148a.375.375 0 0 1-.092.523l-.648.453a.375.375 0 0 1-.523-.092L3.19 1.044A.375.375 0 0 1 3.282.52L3.93.068a.375.375 0 0 1 .523.092l1.735 2.479A10.308 10.308 0 0 1 9 2.25c3.746 0 7.031 2 8.792 4.988a1.5 1.5 0 0 1 0 1.524ZM16.5 8a8.674 8.674 0 0 0-6.755-4.219A1.75 1.75 0 1 0 12.75 5v-.001a4.25 4.25 0 0 1-1.154 5.366l.834 1.192A8.641 8.641 0 0 0 16.5 8Z" fill="#828FA3"/></svg>
+                        <h2>Hide Sidebar</h2>
+                    </div>
+                </section>
+                <!-- END ASIDE BOTTOM -->
+            </aside>
+            <!-- END OF ASIDE -->
+            <!-- ASIDE REVEAL BTN -->
+            <div class="asideReveakBtn justify-center items-center fixed bottom-0 mb-8 pl-8 pr-4 py-6 rounded-r-full bg-tertiarty-200 cursor-pointer hover:bg-tertiarty-100 transition-all ease-linear duration-300 hidden  mobile:hidden">
+                <img src="./assets/icon-show-sidebar.svg" alt="">
+            </div>
+            <!-- END OF ASIDE REVEAL BTN -->
+            <!-- BOARD_COLUMN -->
+            <section class="w-screen board_column px-11 py-4 h-screen flex flex-nowrap gap-4 transition-all ease-linear duration-300">
+                <section class="boardColumnContainer flex flex-nowrap gap-4">
+                </section>
+
+                <div class="column addNewColumn flex justify-center items-center font-extrabold text-xl text-secondary rounded-md addColumnBg cursor-pointer  hover:text-tertiarty-200 transition-all ease-linear duration-300">+ New Column</div>   
+        
+            </section>
+            <!-- END OF BOARD_COLUMN -->
+        </section>
+        <!-- END OF IMPORTANT -->
+    </main>
+
+    <section class="overLay fixed top-0 left-0 w-full min-h-screen bg-black bg-opacity-50 z-40  justify-center items-center hidden">
+
+        <!-- CREATE BOARD -->
+        <section class="createBoard bg-primary-200 p-5 rounded-lg w-1/3 hidden md:w-4/6 mobile:w-5/6">
+            <h2 class="text-white font-bold text-2xl">Add Board</h2>
+            <form class="mt-4">
+                <div class="input_div flex flex-col mb-4">
+                    <label class="label">Name</label>
+                    <input class="boardInput boardInputName border-line " type="text">
+                </div>
+                <label class="label">Columns</label>
+                <div class="column_input_container w-full mb-4">
+                    <div class="column_input_div">
+                        <input class="boardInput border-line boardInputColumn" type="text">
+                    </div>
+                </div>
+                <div class="createBoardBtn flex flex-col w-full">
+                    <button class="addColumn text-tertiarty-200 bg-white mb-4 py-2 rounded-r-full rounded-l-full font-semibold">+Add New Column</button>
+                    <button class="saveBoard bg-tertiarty-200 text-white mb-4 py-2 rounded-r-full rounded-l-full font-semibold">Save New Board</button>
+                </div>
+            </form>
+        </section>
+        <!-- END OF CREATE BOARD -->
+
+    </section>
+
+</body>
+
+</html>
+
+
+
+
+
