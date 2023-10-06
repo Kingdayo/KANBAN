@@ -1,0 +1,9 @@
+        // const kanbanObj = JSON.parse(localStorage.getItem('KANBAN'))
+        // const activeBoard = document.querySelector('.selectedBoardStyles').dataset.name 
+        // delete kanbanObj[activeBoard]
+        // localStorage.setItem('KANBAN', JSON.stringify(kanbanObj))
+        // boardRefresh()
+        // // Close the article element that houses the delete board button
+        // const boardSetting = document.querySelector('article')
+        // boardSetting.classList.remove('block')
+        // boardSetting.classList.add('hidden')

@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="index.js"></script>
 </head>
-<body class="h-full w-full cursor-progress">
-    <main class="font-sans max-h-screen h-full w-full bg-primary-200 relative">
+<body class="h-full w-full">
+    <main class="font-sans max-h-screen h-full w-full bg-primary-200 relative cursor-context-menu">
         <!-- HEADER -->
         <header class="fixed top-0 left-0 right-0 w-full h-24 grid grid-cols-4 bg-primary-100 border-line border-b-small z-30   md:grid-cols-5">
             <div class="col-span-1 flex_all border-line border-r-small   md:col-span-2  mobile:hidden">
@@ -25,7 +25,9 @@
                 </div>
                 <div class="flex items-center gap-3">
                     <button class="rounded-l-full rounded-r-full text-white font-medium text-sm px-6 py-3 bg-tertiarty-200 hover:bg-tertiarty-100  transition ease-linear duration-300  mobile:before:content-addTask  mobile:px-5 mobile:py-1"><span class="mobile:hidden">+Add New task</span></button>
-                    <img class="boardSettingBtn h-5 cursor-pointer" src="./assets/icon-vertical-ellipsis.svg" alt="">
+                    <div class="px-2 py-2 rounded-t-full rounded-b-full cursor-pointer hover:bg-primary-200 transition ease-linear duration-300 ">
+                        <img class="boardSettingBtn h-5" src="./assets/icon-vertical-ellipsis.svg" alt="">
+                    </div>
                 </div>
             </section>
         </header>
@@ -36,9 +38,8 @@
             <!--BOARD SETTINGS -->
             <article class="boardSetting fixed right-2 top-28 mr-3 bg-primary-100 rounded-md pr-12 pl-4 shadow-md hidden">
                 <ul>
-                    <li class="text-red-500 mb-4 cursor-pointer">Clear Board</li>
+                    <li class="text-secondary mb-4 cursor-pointer">Edit Boards</li>
                     <li class="deleteBoard text-red-500 mb-4 cursor-pointer">Delete Board</li>
-                    <li class="text-red-500 mb-4 cursor-pointer">Reset Boards</li>
                 </ul>
             </article>
             <!--END OF BOARD SETTINGS -->
@@ -87,37 +88,52 @@
         <!-- END OF IMPORTANT -->
     </main>
 
-    <section class="overLay fixed top-0 left-0 w-full min-h-screen bg-black bg-opacity-50 z-40  justify-center items-center hidden">
-
-        <!-- CREATE BOARD -->
-        <section class="createBoard bg-primary-200 p-5 rounded-lg w-1/3 hidden md:w-4/6 mobile:w-5/6">
-            <h2 class="text-white font-bold text-2xl">Add Board</h2>
-            <form class="mt-4">
-                <div class="input_div flex flex-col mb-4">
-                    <label class="label">Name</label>
-                    <input class="boardInput boardInputName border-line " type="text">
-                </div>
-                <label class="label">Columns</label>
-                <div class="column_input_container w-full mb-4">
-                    <div class="column_input_div">
-                        <input class="boardInput border-line boardInputColumn" type="text">
+    <section class="overLay fixed top-0 left-0 w-full max-h-screen h-screen bg-black bg-opacity-50 z-40  justify-center items-center hidden ">
+        <!-- CRUD OPERATION  -->
+        <section class="crudSection bg-primary-200 p-5 rounded-lg w-1/3 hidden md:w-4/6 mobile:w-5/6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="boardCreationTitle text-white font-bold text-2xl"></h2>
+                <img class="closeBoardCreationForm cursor-pointer" src="./assets/icon-cross.svg" alt="">
+            </div>
+            <!-- CREATE BOARD -->
+            <form class="hidden" id="createBoardColumnForm" class="mt-4">
+                    <div class="input_div flex flex-col mb-4">
+                        <label class="label">Name</label>
+                        <input class="boardInput boardInputName border-line " type="text">
                     </div>
-                </div>
-                <div class="createBoardBtn flex flex-col w-full">
-                    <button class="addColumn text-tertiarty-200 bg-white mb-4 py-2 rounded-r-full rounded-l-full font-semibold">+Add New Column</button>
-                    <button class="saveBoard bg-tertiarty-200 text-white mb-4 py-2 rounded-r-full rounded-l-full font-semibold">Save New Board</button>
-                </div>
+                    <label class="label">Columns</label>
+                    <div class="column_input_container w-full mb-4">
+                        <div class="column_input_div default_colum_input">
+                            <input class="boardInput border-line boardInputColumn" type="text">
+                        </div>
+                    </div>
+                    <div class="createBoardBtn flex flex-col w-full">
+                        <button class="addColumn text-tertiarty-200 bg-white mb-4 py-2 rounded-r-full rounded-l-full font-semibold">+Add New Column</button>
+                        <button class="saveBoard bg-tertiarty-200 text-white mb-4 py-2 rounded-r-full rounded-l-full font-semibold">Save New Board</button>
+                    </div>
             </form>
+            <form class="hidden" id='addTask'>
+            </form>
+            <!-- END OF CREATE BOARD -->
         </section>
-        <!-- END OF CREATE BOARD -->
-
+        <!-- END OF CRUD OPERATION  -->
+        <!-- DELETE CONFIRMATION -->
+        <section class="ConfirmDelete bg-primary-100 py-5 px-6 rounded-lg w-2/5 hidden md:w-4/6 mobile:w-full mobile:h-full mobile:rounded-none">
+            <div>
+                <div class="justify-end hidden mobile:flex">
+                    <img src="./assets/icon-cross.svg" alt="">
+                </div>
+                <h1 class="text-red-500 font-bold text-lg deleteWarningHeader"></h1>
+                <p class="text-secondary mt-4 mb-4 text-sm deleteWarningText"></p>
+                <div class="boardConfirmationContainer flex flex-row w-full gap-4 items-center">
+                    <button class="confirmBoardDelete text-white bg-red-500 py-2 rounded-r-full rounded-l-full font-semibold w-1/2">Delete</button>
+                    <button class="closeConfirmationModal text-tertiarty-200 bg-white py-2 rounded-r-full rounded-l-full font-semibold w-1/2">Cancel</button>
+                </div>
+            </div>
+        </section>
+        <!-- END OF DELETE CONFIRMATION -->
     </section>
 
 </body>
 
 </html>
-
-
-
-
-

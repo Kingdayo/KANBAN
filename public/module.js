@@ -53,7 +53,7 @@ export function getNumberOfColumnField(){
  */
 export function createBoard(){
     document.querySelector('.overLay').style.display = 'flex'
-    document.querySelector('.createBoard').style.display = 'block'
+    document.querySelector('.crudSection').style.display = 'block'
 }
 
 
@@ -74,6 +74,11 @@ export function checkInputField(classname){
 
 
 
+/**
+ * The `postBoardCreation` function creates and updates the Kanban board interface based on the data
+ * stored in the `KANBAN` object in local storage.
+ * @param nameOfBoard - The name of the board that is being created or selected.
+ */
 export function postBoardCreation(nameOfBoard){
 
     const KANBAN = JSON.parse(localStorage.getItem('KANBAN'))
@@ -243,6 +248,10 @@ export function boardRefresh(){
 }
 
 
+/**
+ * The function `closeAsideBarMobile` toggles the visibility of a mobile navigation bar and hides an
+ * aside navigation bar if the window width is less than or equal to 767 pixels.
+ */
 export function closeAsideBarMobile(){
     if(window.innerWidth <= 767){
         document.querySelector('.mobileNavBar').classList.toggle('-rotate-180')
@@ -250,4 +259,36 @@ export function closeAsideBarMobile(){
         asideNavBar.classList.remove('mobile:block')
         asideNavBar.classList.add('mobile:hidden')
     }
+}
+
+
+/**
+ * The function clears the value of all text input fields on a webpage.
+ */
+export function clearAllInputFields(){
+    document.querySelectorAll("input[type = 'text']").forEach( (input)=> {
+        input.value = ""
+    })
+
+    /* The code is selecting all elements with the class "dynamicField" using the
+    `document.querySelectorAll()` method. It then iterates over each selected element using the
+    `forEach()` method and removes each element from the DOM using the `remove()` method. This code is
+    effectively clearing or deleting all elements with the class "dynamicField" from the webpage. */
+    const dynamicFields = document.querySelectorAll('.dynamicField')
+    dynamicFields.forEach( (dynamicField)=> {
+        dynamicField.remove()
+    })
+}
+
+
+/**
+ * The function `boardDeletion()` deletes the active board from the `kanbanObj` object stored in the
+ * browser's localStorage and refreshes the board.
+ */
+export function boardDeletion(){
+    const kanbanObj = JSON.parse(localStorage.getItem('KANBAN'))
+    const activeBoard = document.querySelector('.selectedBoardStyles').dataset.name 
+    delete kanbanObj[activeBoard]
+    localStorage.setItem('KANBAN', JSON.stringify(kanbanObj))
+    boardRefresh()
 }

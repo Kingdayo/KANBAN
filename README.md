@@ -24,7 +24,7 @@ Your users should be able to:
 - See hover states for all interactive elements on the page
 - Create, read, update, and delete boards and tasks
 - Receive form validations when trying to create/edit boards and tasks
-- Mark subtasks as complete and move tasks between columns
+- Mark subtasks as complete and move tasks between columns 
 - Hide/show the board sidebar
 - Toggle the theme between light/dark modes
 - **Bonus**: Allow users to drag and drop tasks to change their status and re-order them in a column
